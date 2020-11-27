@@ -14,9 +14,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
-Route::get('/calendar', [EventsController::class, 'index']);
-Route::post('/calendar', [EventsController::class, 'store'])->name('event.store');
+Route::get('/', [EventsController::class, 'index']);
+Route::post('/', [EventsController::class, 'store'])->name('event.store');
