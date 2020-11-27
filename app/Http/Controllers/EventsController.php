@@ -16,13 +16,8 @@ class EventsController extends Controller
      */
     public function index()
     {
-        $event= Event::latest()->first();
         $currentMonth = Carbon::now()->format('M Y');
-        $periods = CarbonPeriod::create(Carbon::now()->startOfMonth(), Carbon::now()->endOfMonth());
-
-        return view('events.index', compact(
-            'periods', 'event', 'currentMonth'
-        ));
+        return view('events.index', compact('currentMonth'));
     }
 
     /**
@@ -32,9 +27,15 @@ class EventsController extends Controller
      */
     public function store()
     {
-        Event::create($this->validateAttribute());
+        $attributes = $this->validateAttribute();
 
-        return back()->with('success', 'Event successfully saved');
+        Event::create($attributes);
+
+        return response()->json([
+            'status' => 200,
+            'message' => 'Event successfully saved',
+            'calendar' => view('events._calendar', ['event' => (object) $attributes])->render()
+        ]);
     }
 
     /**

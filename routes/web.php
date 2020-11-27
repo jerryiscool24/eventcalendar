@@ -19,4 +19,4 @@ Route::get('/', function () {
 });
 
 Route::get('/calendar', [EventsController::class, 'index']);
-Route::post('/calendar', [EventsController::class, 'store']);
+Route::post('/calendar', [EventsController::class, 'store'])->name('event.store');

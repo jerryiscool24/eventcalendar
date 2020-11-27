@@ -1,5 +1,4 @@
-<h4 class="border-bottom py-3 mb-0">{{ $currentMonth }}</h4>
-@foreach ($periods as $date)
+@foreach (currentMonthPeriods() as $date)
     @php
         $withEvent = false;
         if (isset($event)) {
