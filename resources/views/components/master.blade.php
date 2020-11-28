@@ -31,7 +31,7 @@
                 position: absolute;
                 top: 0;
                 right: 0;
-                width: 13%;
+                width: 220px;
                 margin-right: 10px;
             }
         </style>
